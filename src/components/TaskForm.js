@@ -1,22 +1,25 @@
 const TaskForm = () => {
     return (
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <h3 class="panel-title">Thêm Công Việc</h3>
+        <div className="panel panel-warning">
+            <div className="panel-heading">
+                <h3 className="panel-title">Thêm Công Việc
+                    {/* <span className="fa fa-times-circle text-right"></span> */}
+                </h3>
+                
             </div>
-            <div class="panel-body">
+            <div className="panel-body">
                 <form>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Tên :</label>
                         <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             style={{ height: "36px" }}
                         />
                     </div>
                     <label>Trạng Thái :</label>
                     <select
-                        class="form-control"
+                        className="form-control"
                         required="required"
                         style={{ height: "36px" }}
                     >
@@ -24,12 +27,12 @@ const TaskForm = () => {
                         <option value="0">Ẩn</option>
                     </select>
                     <br />
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-warning">
+                    <div className="text-center">
+                        <button type="submit" className="btn btn-warning">
                             Thêm
                         </button>
                         &nbsp;
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" className="btn btn-danger">
                             Hủy Bỏ
                         </button>
                     </div>

@@ -1,26 +1,26 @@
 import TaskItem from "./TaskItem";
-const TaskList = () => {
+const TaskList = ({tasks}) => {
     return (
         <>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <table class="table table-bordered table-hover">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table className="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">STT</th>
-                            <th class="text-center">Tên</th>
-                            <th class="text-center">Trạng Thái</th>
-                            <th class="text-center">Hành Động</th>
+                            <th className="text-center">STT</th>
+                            <th className="text-center">Tên</th>
+                            <th className="text-center">Trạng Thái</th>
+                            <th className="text-center">Hành Động</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td></td>
                             <td>
-                                <input type="text" class="form-control" />
+                                <input type="text" className="form-control" />
                             </td>
                             <td>
                                 <select
-                                    class="form-control"
+                                    className="form-control"
                                     style={{ height: "36px" }}
                                 >
                                     <option value="-1">Tất Cả</option>
@@ -30,10 +30,7 @@ const TaskList = () => {
                             </td>
                             <td></td>
                         </tr>
-                        <TaskItem />
-                        <TaskItem />
-                        <TaskItem />
-                        <TaskItem />
+                        <TaskItem tasks={tasks} />
                     </tbody>
                 </table>
             </div>

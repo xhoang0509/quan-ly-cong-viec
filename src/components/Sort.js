@@ -15,7 +15,7 @@ const Sort = () => {
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li>
-                        <a href="#" role="button">
+                        <a href="/#" role="button">
                             <span className="">
                                 <i className="fas fa-sort-alpha-down mr-3"></i>
                                 Tên A-Z
@@ -23,7 +23,7 @@ const Sort = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="#" role="button">
+                        <a href="/#" role="button">
                             <span className="">
                                 <i className="fas fa-sort-alpha-up mr-3"></i>
                                 Tên Z-A
@@ -32,12 +32,12 @@ const Sort = () => {
                     </li>
                     <li role="separator" className="divider"></li>
                     <li>
-                        <a href="#" role="button">
+                        <a href="/#" role="button">
                             Trạng Thái Kích Hoạt
                         </a>
                     </li>
                     <li>
-                        <a href="#" role="button">
+                        <a href="/#" role="button">
                             Trạng Thái Ẩn
                         </a>
                     </li>

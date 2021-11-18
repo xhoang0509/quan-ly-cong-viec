@@ -1,4 +1,4 @@
-const TaskItem = ({ tasks }) => {
+const TaskItem = ({ tasks, onUpdateStatus }) => {
     return (
         <>
             {tasks.map((task, index) => (
@@ -9,9 +9,10 @@ const TaskItem = ({ tasks }) => {
                         <span
                             className={
                                 task.status
-                                    ? "label label-success"
-                                    : "label label-danger"
+                                    ? "label label-success btn-status"
+                                    : "label label-danger btn-status"
                             }
+                            onClick={() => onUpdateStatus(task.id)}
                         >
                             {task.status ? "Kích Hoạt" : "Ẩn"}
                         </span>

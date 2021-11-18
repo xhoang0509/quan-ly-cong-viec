@@ -3,41 +3,14 @@ import { useEffect, useState } from "react";
 import TaskForm from "./components/TaskForm";
 import Control from "./components/Control";
 import TaskList from "./components/TaskList";
+import { genarateID } from "./helpers";
+
+// css
+import "./App.css"
 
 const App = () => {
     const [tasks, setTasks] = useState([]);
     const [isDisplayForm, setIsDisplayForm] = useState(false);
-    const onGenarateData = () => {
-        const tasks = [
-            {
-                id: genarateID(),
-                name: "Học lập trình",
-                status: true,
-            },
-            {
-                id: genarateID(),
-                name: "Đi làm",
-                status: false,
-            },
-            {
-                id: genarateID(),
-                name: "Coder",
-                status: true,
-            },
-            {
-                id: genarateID(),
-                name: "Home work",
-                status: true,
-            },
-            {
-                id: genarateID(),
-                name: "Rửa bát",
-                status: false,
-            },
-        ];
-        setTasks(tasks);
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    };
 
     useEffect(() => {
         if (localStorage && localStorage.getItem("tasks")) {
@@ -45,28 +18,28 @@ const App = () => {
             setTasks([...tasksLocalStorage]);
         }
     }, []);
-    const s4 = () => {
-        return Math.floor(1 + Math.random() * 0x10000)
-            .toString(16)
-            .substring(1);
+
+    const onSubmit = (data) => {
+        const newTask = {
+            id: genarateID(),
+            ...data,
+        };
+
+        setTasks([...tasks, newTask]);
     };
 
-    const genarateID = () => {
-        return (
-            s4() +
-            s4() +
-            "-" +
-            s4() +
-            s4() +
-            s4() +
-            "-" +
-            s4() +
-            s4() +
-            "-" +
-            s4() +
-            s4()
-        );
+    const onUpdateStatus = (id) => {
+        const index = tasks.findIndex((tasks) => tasks.id === id);
+
+        tasks[index].status = !tasks[index].status;
+
+        setTasks([...tasks]);
     };
+
+    // if tasks change, save into localstorage
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
     return (
         <div className="container">
             <div className="text-center">
@@ -75,7 +48,7 @@ const App = () => {
             </div>
             <div className="row">
                 <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    {isDisplayForm && <TaskForm />}
+                    {isDisplayForm && <TaskForm onSubmit={onSubmit} />}
                 </div>
                 <div
                     className={
@@ -94,18 +67,14 @@ const App = () => {
                             ? "Thêm Công Việc"
                             : "Ẩn Bảng Thêm Công Việc"}
                     </button>
-                    <button
-                        type="button"
-                        className="btn btn-danger ml-5"
-                        onClick={onGenarateData}
-                    >
-                        Genarate Data
-                    </button>
                     <div className="row mt-15 mt-3">
                         <Control />
                     </div>
                     <div className="row mt-15 mt-3">
-                        <TaskList tasks={tasks} />
+                        <TaskList
+                            tasks={tasks}
+                            onUpdateStatus={onUpdateStatus}
+                        />
                     </div>
                 </div>
             </div>

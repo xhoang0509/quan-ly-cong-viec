@@ -1,11 +1,29 @@
-const TaskForm = () => {
+import { useState, useRef } from "react";
+
+const TaskForm = ({ onSubmit }) => {
+    const [name, setName] = useState();
+    const [status, setStatus] = useState(false);
+    const inputRef = useRef();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        onSubmit({
+            name,
+            status: status === "true" ? true : false,
+        });
+        setName("");
+        inputRef.current.focus();
+    };
+    const onClear = (e) => {
+        e.preventDefault();
+        setName("");
+        setStatus(false);
+    };
     return (
         <div className="panel panel-warning">
             <div className="panel-heading">
-                <h3 className="panel-title">Thêm Công Việc
-                    {/* <span className="fa fa-times-circle text-right"></span> */}
-                </h3>
-                
+                <h3 className="panel-title">Thêm Công Việc</h3>
             </div>
             <div className="panel-body">
                 <form>
@@ -15,6 +33,9 @@ const TaskForm = () => {
                             type="text"
                             className="form-control"
                             style={{ height: "36px" }}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            ref={inputRef}
                         />
                     </div>
                     <label>Trạng Thái :</label>
@@ -22,17 +43,25 @@ const TaskForm = () => {
                         className="form-control"
                         required="required"
                         style={{ height: "36px" }}
+                        defaultValue={status}
+                        onChange={(e) => setStatus(e.target.value)}
                     >
-                        <option value="1">Kích Hoạt</option>
-                        <option value="0">Ẩn</option>
+                        <option value={true}>Kích Hoạt</option>
+                        <option value={false}>Ẩn</option>
                     </select>
                     <br />
                     <div className="text-center">
-                        <button type="submit" className="btn btn-warning">
+                        <button
+                            className="btn btn-warning"
+                            onClick={(e) => handleSubmit(e)}
+                        >
                             Thêm
                         </button>
                         &nbsp;
-                        <button type="submit" className="btn btn-danger">
+                        <button
+                            className="btn btn-danger"
+                            onClick={(e) => onClear(e)}
+                        >
                             Hủy Bỏ
                         </button>
                     </div>

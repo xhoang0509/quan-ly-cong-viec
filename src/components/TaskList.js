@@ -1,5 +1,5 @@
 import TaskItem from "./TaskItem";
-const TaskList = ({tasks}) => {
+const TaskList = ({tasks, onUpdateStatus}) => {
     return (
         <>
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -30,7 +30,7 @@ const TaskList = ({tasks}) => {
                             </td>
                             <td></td>
                         </tr>
-                        <TaskItem tasks={tasks} />
+                        <TaskItem tasks={tasks} onUpdateStatus={onUpdateStatus} />
                     </tbody>
                 </table>
             </div>
